@@ -3,6 +3,8 @@ package user;
 import java.util.LinkedList;
 import java.util.List;
 
+import user.items.Equipment;
+
 public class Backpack {
     private static List<Equipment> equipment = new LinkedList<Equipment>();
 

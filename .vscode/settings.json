@@ -1,5 +1,7 @@
 {
 	"editor.formatOnSave": true,
 	"editor.fontWeight": "normal",
-	"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"editor.defaultFormatter": "mwpb.java-prettier-formatter",
+	"prettier.useTabs": true,
+	"prettier.tabWidth": 3,
 }

@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import user.items.Equipment;
+
 
 public class Player {
     private static String name;
