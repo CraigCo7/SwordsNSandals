@@ -37,8 +37,7 @@ public class Weapon extends Equipment implements Cloneable {
     }
   }
 
-  public static Weapon makeWeapon(WeaponType type)
-    throws UnknownWeaponException {
+  public static Weapon makeWeapon(WeaponType type) throws UnknownWeaponException {
     Weapon weapon;
     switch (type) {
       case SWORD:

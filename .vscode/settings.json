@@ -1,7 +1,9 @@
 {
 	"editor.formatOnSave": true,
 	"editor.fontWeight": "normal",
-	"editor.defaultFormatter": "mwpb.java-prettier-formatter",
+	// "editor.defaultFormatter": "mwpb.java-prettier-formatter",
 	"prettier.useTabs": true,
 	"prettier.tabWidth": 3,
+	"java.format.settings.url": ".vscode/eclipse-java-google-style.xml",
+
 }

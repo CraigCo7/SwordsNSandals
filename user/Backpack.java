@@ -2,30 +2,28 @@ package user;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import user.items.Equipment;
 
 public class Backpack {
-    private static List<Equipment> equipment = new LinkedList<Equipment>();
 
-    protected Backpack() {
-    }
+  private static List<Equipment> equipment = new LinkedList<Equipment>();
 
-    public static Equipment newItem(String name) {
-        Equipment item = new Equipment(name);
-        equipment.add(item);
-        return item;
-    }
+  protected Backpack() {}
 
-    public static List<Equipment> backpack() {
-        return Backpack.equipment;
-    }
+  public static Equipment newItem(String name) {
+    Equipment item = new Equipment(name);
+    equipment.add(item);
+    return item;
+  }
 
-    // public String getTitle() {
-    //     return this.title;
-    // }
+  public static List<Equipment> backpack() {
+    return Backpack.equipment;
+  }
+  // public String getTitle() {
+  // return this.title;
+  // }
 
-    // public String toString() {
-    //     return this.getTitle();
-    // }
+  // public String toString() {
+  // return this.getTitle();
+  // }
 }

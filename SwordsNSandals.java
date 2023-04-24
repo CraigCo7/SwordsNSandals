@@ -23,12 +23,8 @@ public class SwordsNSandals {
     Player player;
 
     narrator.print("To begin, customize your gladiator.");
-    narrator.print(
-      "Currently, his stats are:\nAttack: 10\nDefense: 10\nHealth: 10\nStamina: 10"
-    );
-    narrator.print(
-      "You have 15 free points to assign. You will get more as you level up."
-    );
+    narrator.print("Currently, his stats are:\nAttack: 10\nDefense: 10\nHealth: 10\nStamina: 10");
+    narrator.print("You have 15 free points to assign. You will get more as you level up.");
 
     player = Player.initializeCharacterStats(Player.getName(), myObj, narrator);
 
@@ -36,14 +32,11 @@ public class SwordsNSandals {
     narrator.print(player.getStats());
     narrator.print("Is this to your liking?");
 
-    while (
-      Input.validEntryYesNo() == false || Input.getStringInput().equals("no")
-    ) {
+    while (Input.validEntryYesNo() == false || Input.getStringInput().equals("no")) {
       if (Input.validEntryYesNo() == false) {
         narrator.print("Please enter a valid input! (Yes/No)");
       } else {
-        player =
-          Player.initializeCharacterStats(Player.getName(), myObj, narrator);
+        player = Player.initializeCharacterStats(Player.getName(), myObj, narrator);
         narrator.print("Your stats are:");
         narrator.print(player.getStats());
         narrator.print("Is this to your liking?");
