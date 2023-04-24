@@ -1,12 +1,12 @@
 package user;
 
+import utils.DelayedStringPrinter;
+import utils.Input;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import utils.DelayedStringPrinter;
-import utils.Input;
 
 public class Player {
     private static String name;
@@ -27,11 +27,11 @@ public class Player {
     }
 
     private Player(Builder builder) {
-        this.name = builder.name;
-        this.attack = builder.attack;
-        this.defense = builder.defense;
-        this.health = builder.health;
-        this.stamina = builder.stamina;
+        Player.name = builder.name;
+        Player.attack = builder.attack;
+        Player.defense = builder.defense;
+        Player.health = builder.health;
+        Player.stamina = builder.stamina;
     }
 
     public static class Builder {
@@ -86,19 +86,19 @@ public class Player {
         while (true) {
                     narrator.print("What is your name, Gladiator?");
                     Input.newStringInput();
-                    name = utils.Input.getStringInput();
+                    name = Input.getStringInput();
                     narrator.print("Is " + name + " your name?");
 
                     while (true) {
                         Input.newStringInput();
-                        answer = utils.Input.getStringInput();
+                        answer = Input.getStringInput();
                         if (Input.validEntryYesNo() == false) {
                         narrator.print("Please enter a valid input! (Yes/No)");
                         } else {
                             break;
                         }
                     }
-                    if (utils.Input.getStringInput().equals("yes")) {
+                    if (Input.getStringInput().equals("yes")) {
                         break;
                     }
                 }
@@ -192,7 +192,7 @@ public class Player {
     }
 
     public String getStats() {
-        return ("Attack: " + this.attack + "\nDefense: " + this.defense + "\nHealth: " + this.health + "\nStamina: " + this.stamina);
+        return ("Attack: " + Player.attack + "\nDefense: " + Player.defense + "\nHealth: " + Player.health + "\nStamina: " + Player.stamina);
     }
 
     // public String toString() {

@@ -1,5 +1,6 @@
 package user;
 
+
 public class Armor extends Equipment {
 
     private ArmorType armorType;
