@@ -18,7 +18,7 @@ public class Input {
 
   // Retrieves a String response from user
   public static void newStringInput() {
-    Input.stringInput = myObj.nextLine().trim();
+    Input.stringInput = myObj.nextLine().trim().toLowerCase();
   }
 
   // Retrieves an integer response from user

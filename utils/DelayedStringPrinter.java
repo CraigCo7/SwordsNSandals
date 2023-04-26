@@ -19,7 +19,7 @@ public class DelayedStringPrinter {
     }
     System.out.println();
     try {
-      Thread.sleep(800);
+      Thread.sleep(500);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
