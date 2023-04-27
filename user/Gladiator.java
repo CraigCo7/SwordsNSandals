@@ -1,11 +1,13 @@
 package user;
 
+import java.util.Random;
+
 public class Gladiator {
     private int attack;
     private int defense;
     private int health;
     private int stamina;
-    private Equipped equipped = new Equipped();
+    private Equipped equipped = new Equipped(false);
 
     private class Equipped {
 
@@ -59,6 +61,58 @@ public class Gladiator {
 
     }
 
+    protected Gladiator(Builder builder) {
+        this.attack = builder.attack;
+        this.defense = builder.defense;
+        this.health = builder.health;
+        this.stamina = builder.stamina;
+    }
 
 
+    public static class Builder {
+
+        private int attack;
+        private int defense;
+        private int health;
+        private int stamina;
+
+        public Builder(int attack, int defense, int health, int stamina) {
+            this.attack = 1;
+            this.defense = 1;
+            this.health = 1;
+            this.stamina = 1;
+        }
+
+        // Build function that returns a Book ob
+        public Gladiator build() {
+            return new Gladiator(this);
+        }
+
+    }
+
+
+    public Gladiator createGladiator(int level) {
+        Random rng = new Random();
+        int baseStat = level * 10;
+        int attack = rng.nextInt(25);
+        int defense = rng.nextInt(25);
+        int health = rng.nextInt(25);
+        int stamina = rng.nextInt(25);
+        Gladiator gladiator = new Gladiator.Builder(baseStat + attack, baseStat + defense,
+                baseStat + health, baseStat + stamina).build();
+        return gladiator;
+    }
+
+
+    public void attack() {
+
+    }
+
+    public void defend() {
+
+    }
+
+    public void rest() {
+
+    }
 }
