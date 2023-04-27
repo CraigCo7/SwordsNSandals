@@ -1,6 +1,6 @@
 package user.items;
 
-public abstract class Equipment {
+public class Equipment {
     private EquipmentType type;
     private Rarity rarity;
     private int level;

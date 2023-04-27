@@ -7,11 +7,10 @@ public class Rizz extends Equipment {
     private int weight = 0;
     private double lvlUpMin = 0;
     private double lvlUpMax = 2.0;
-    private String description;
+    private String description = "RIZZ";
 
     public Rizz(int level) {
         super(EquipmentType.WEAPON, Rarity.LEGENDARY, level);
-        this.description = "RIZZ";
         this.minDamage = calculateMinDamage();
         this.maxDamage = calculateMaxDamage();
     }
@@ -22,5 +21,9 @@ public class Rizz extends Equipment {
 
     private int calculateMaxDamage() {
         return (int) Math.floor(baseDamage * this.getLevel() * lvlUpMax);
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 }

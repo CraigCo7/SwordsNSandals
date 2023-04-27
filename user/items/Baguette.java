@@ -7,11 +7,10 @@ public class Baguette extends Equipment {
     private int weight = 3;
     private double lvlUpMin = 1.3;
     private double lvlUpMax = 1.5;
-    private String description;
+    private String description = "BAGUETTE";
 
     public Baguette(int level) {
         super(EquipmentType.WEAPON, Rarity.RARE, level);
-        this.description = "BAGUETTE";
         this.minDamage = calculateMinDamage();
         this.maxDamage = calculateMaxDamage();
     }
@@ -22,5 +21,9 @@ public class Baguette extends Equipment {
 
     private int calculateMaxDamage() {
         return (int) Math.floor(baseDamage * this.getLevel() * lvlUpMax);
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 }

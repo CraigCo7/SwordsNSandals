@@ -7,11 +7,10 @@ public class Sword extends Equipment {
     private int weight = 8;
     private double lvlUpMin = 1.3;
     private double lvlUpMax = 1.6;
-    private String description;
+    private String description = "SWORD";
 
     public Sword(int level) {
         super(EquipmentType.WEAPON, Rarity.COMMON, level);
-        this.description = "SWORD";
         this.minDamage = calculateMinDamage();
         this.maxDamage = calculateMaxDamage();
     }
@@ -22,5 +21,9 @@ public class Sword extends Equipment {
 
     private int calculateMaxDamage() {
         return (int) Math.floor(baseDamage * this.getLevel() * lvlUpMax);
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 }

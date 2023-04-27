@@ -7,11 +7,10 @@ public class MomSlipper extends Equipment {
     private int weight = 3;
     private double lvlUpMin = 1.0;
     private double lvlUpMax = 1.2;
-    private String description;
+    private String description = "MOMSLIPPER";
 
     public MomSlipper(int level) {
         super(EquipmentType.WEAPON, Rarity.RARE, level);
-        this.description = "MOMSLIPPER";
         this.minDamage = calculateMinDamage();
         this.maxDamage = calculateMaxDamage();
     }
@@ -22,5 +21,9 @@ public class MomSlipper extends Equipment {
 
     private int calculateMaxDamage() {
         return (int) Math.floor(baseDamage * this.getLevel() * lvlUpMax);
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 }

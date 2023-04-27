@@ -2,6 +2,7 @@ package user;
 
 import java.util.ArrayList;
 import java.util.List;
+import user.items.Equipment;
 
 public class Player extends Gladiator {
     private static Player player;
@@ -30,7 +31,7 @@ public class Player extends Gladiator {
         return Player.player;
     }
 
-    private class Storage {
+    private static class Storage {
         private List<Equipment> items;
 
         private static Storage storage;
@@ -50,22 +51,21 @@ public class Player extends Gladiator {
 
         public void removeItem(Equipment equipment) {
             if (items.contains(equipment)) {
-                System.out.println("Cannot have 2 of the same item.");
+                items.remove(equipment);
             } else {
-                items.add(equipment);
+                System.out.println("Item cannot be found");
             }
         }
 
         public void addItem(Equipment equipment) {
             if (items.contains(equipment)) {
-                items.remove(equipment);
+                System.out.println("Cannot have 2 of the same item.");
             } else {
                 System.out.println("Do not have item.");
             }
         }
 
     }
-
 
     public String getName() {
         return this.name;
