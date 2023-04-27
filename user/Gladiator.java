@@ -90,7 +90,6 @@ public class Gladiator {
 
     }
 
-
     public Gladiator createGladiator(int level) {
         Random rng = new Random();
         int baseStat = level * 10;
