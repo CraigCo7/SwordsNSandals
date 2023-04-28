@@ -78,13 +78,13 @@ public class Gladiator {
         private int stamina;
 
         public Builder(int attack, int defense, int health, int stamina) {
-            this.attack = 1;
-            this.defense = 1;
-            this.health = 1;
-            this.stamina = 1;
+            this.attack = attack;
+            this.defense = defense;
+            this.health = health;
+            this.stamina = stamina;
         }
 
-        // Build function that returns a Book ob
+        // Build function that returns a Book object
         public Gladiator build() {
             return new Gladiator(this);
         }
@@ -114,5 +114,26 @@ public class Gladiator {
 
     public void rest() {
 
+    }
+
+    public int getAttack() {
+        return this.attack;
+    }
+
+    public int getDefense() {
+        return this.defense;
+    }
+
+    public int getHealth() {
+        return this.health;
+    }
+
+    public int getStamina() {
+        return this.stamina;
+    }
+
+    public String getStats() {
+        return "Attack: " + this.getAttack() + "\nDefense: " + this.getDefense() + "\nHealth: "
+                + this.getHealth() + "\nStamina: " + this.getStamina();
     }
 }

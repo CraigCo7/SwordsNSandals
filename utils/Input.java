@@ -18,7 +18,10 @@ public class Input {
 
   // Retrieves a String response from user
   public static void newStringInput() {
-    Input.stringInput = myObj.nextLine().trim().toLowerCase();
+    String input = myObj.nextLine();
+    Input.stringInput = input.toLowerCase().trim();
+
+    // Input.stringInput = myObj.nextLine().trim().toLowerCase();
   }
 
   // Retrieves an integer response from user
@@ -36,11 +39,17 @@ public class Input {
     return Input.numInput;
   }
 
-  // Determines if entry is valid when prompted yes/no questions.
+  // Repeatedly asks user for yes, keeps prompting if no or invalid response.
   public static boolean validEntryYesNo() {
-    if (Input.stringInput.equalsIgnoreCase("yes") || (Input.stringInput.equalsIgnoreCase("no"))) {
-      return true;
+    while (true) {
+      Input.newStringInput();
+      if (Input.stringInput.equals("yes")) {
+        return true;
+      } else if (Input.stringInput.equals("no")) {
+        return false;
+      } else {
+        System.out.println("Please enter a valid input! (Yes/No)");
+      }
     }
-    return false;
   }
 }

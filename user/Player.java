@@ -3,6 +3,8 @@ package user;
 import java.util.ArrayList;
 import java.util.List;
 import user.items.Equipment;
+import utils.DelayedStringPrinter;
+import utils.Input;
 
 public class Player extends Gladiator {
     private static Player player;
@@ -67,6 +69,23 @@ public class Player extends Gladiator {
 
     }
 
+    public List<Integer> setInitialStats() {
+        DelayedStringPrinter narrator = new DelayedStringPrinter(15);
+        int addStats;
+        List<String> attributes = new ArrayList<String>();
+        while (true) {
+            addStats = 50;
+            List<Integer> stats = new ArrayList<Integer>();
+            for (int i = 0; i < 4; i++) {
+
+                narrator.print("You have " + addStats + " more points left to assign.");
+                narrator.print("How many stats would you like to assign to Attack?");
+                Input.newIntInput();
+                stats.add(Input.getNumInput());
+            }
+        }
+    }
+
     public String getName() {
         return this.name;
     }
@@ -78,4 +97,5 @@ public class Player extends Gladiator {
     public int getLevel() {
         return this.level;
     }
+
 }
