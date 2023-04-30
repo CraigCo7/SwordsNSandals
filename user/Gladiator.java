@@ -8,9 +8,9 @@ public class Gladiator {
     private int defense;
     private int health;
     private int stamina;
-    private Equipped equipped = new Equipped(false);
+    protected Equipped equipped = new Equipped(false);
 
-    private class Equipped {
+    public class Equipped {
 
         private boolean player = false;
         private Equipment helmet;
@@ -114,6 +114,22 @@ public class Gladiator {
 
     public void rest() {
 
+    }
+
+    public void addAttack(int attack) {
+        this.attack += attack;
+    }
+
+    public void addDefense(int defense) {
+        this.defense += defense;
+    }
+
+    public void addHealth(int health) {
+        this.health += health;
+    }
+
+    public void addStamina(int stamina) {
+        this.health += stamina;
     }
 
     public int getAttack() {

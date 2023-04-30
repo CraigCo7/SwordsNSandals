@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Input {
@@ -49,6 +50,17 @@ public class Input {
         return false;
       } else {
         System.out.println("Please enter a valid input! (Yes/No)");
+      }
+    }
+  }
+
+  public static String validEntry(List<String> entries) {
+    while (true) {
+      Input.newStringInput();
+      if (entries.contains(Input.stringInput)) {
+        return Input.stringInput;
+      } else {
+        System.out.println("Please enter a valid input!" + "(" + entries + ")");
       }
     }
   }
