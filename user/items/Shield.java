@@ -6,7 +6,7 @@ public class Shield extends Equipment {
     private String description = "BRACERS";
 
     public Shield(int level) {
-        super(EquipmentType.ARMOR, "Shield", Rarity.COMMON, level);
+        super(EquipmentType.ARMOR, EquipmentName.SHIELD, Rarity.COMMON, level);
         this.armor = calculateArmor();
     }
 

@@ -41,4 +41,4 @@ A simple CLI-based Java game. Fight for your freedom as a gladiator!
    }
 
 2. Add description to items.
-3.
+3. Problem with typing 0 when leaving the equip items menu.

@@ -7,6 +7,7 @@ import java.util.List;
 import user.items.Equipment;
 import utils.DelayedStringPrinter;
 import utils.Input;
+import utils.exceptions.UnknownItemException;
 
 public class Player extends Gladiator {
     private static Player player;
@@ -152,4 +153,19 @@ public class Player extends Gladiator {
         return Player.storage;
     }
 
+    public void equipItemById(int id) throws UnknownItemException {
+        Storage storage = getStorage();
+        Equipped equipped = getEquipped();
+        List<Integer> itemIds = new ArrayList<Integer>();
+        storage.items.forEach((item) -> {
+            if (item.getId() == id) {
+                equipped.equipItem(item);
+                System.out.println(item.toString() + " has been equipped!");
+            }
+            itemIds.add(item.getId());
+        });
+        if (!itemIds.contains(id)) {
+            throw new UnknownItemException();
+        }
+    }
 }

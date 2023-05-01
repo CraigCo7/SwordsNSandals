@@ -10,7 +10,7 @@ public class Rizz extends Equipment {
     private String description = "RIZZ";
 
     public Rizz(int level) {
-        super(EquipmentType.WEAPON, "Rizz", Rarity.LEGENDARY, level);
+        super(EquipmentType.WEAPON, EquipmentName.RIZZ, Rarity.LEGENDARY, level);
         this.minDamage = calculateMinDamage();
         this.maxDamage = calculateMaxDamage();
     }

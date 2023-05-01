@@ -6,7 +6,7 @@ public class Bracers extends Equipment {
     private String description = "BRACERS";
 
     public Bracers(int level) {
-        super(EquipmentType.ARMOR, "Bracers", Rarity.COMMON, level);
+        super(EquipmentType.ARMOR, EquipmentName.BRACERS, Rarity.COMMON, level);
         this.armor = calculateArmor();
     }
 

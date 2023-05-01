@@ -12,6 +12,7 @@ import user.items.Sword;
 import utils.DelayedStringPrinter;
 import utils.Input;
 import utils.exceptions.NotEnoughExperienceException;
+import utils.exceptions.UnknownItemException;
 import utils.exceptions.UnknownWeaponException;
 
 public class SwordsNSandals {
@@ -67,11 +68,12 @@ public class SwordsNSandals {
     Equipment equipment = new Sword(1);
     storage.addItem(equipment);
     Equipped equipped = user.getEquipped();
-    equipped.equipWeapon(equipment);
+    equipped.equipItem(equipment);
 
     // Freeplay
     List<String> homeOptions = new ArrayList<String>(Arrays.asList("battle", "shop", "inventory"));
     List<String> shopOptions = new ArrayList<String>(Arrays.asList("weapon", "armor", "back"));
+    List<String> inventoryOptions = new ArrayList<String>(Arrays.asList("view", "equip", "back"));
 
     narrator.print("This is where I leave you...");
 
@@ -79,7 +81,7 @@ public class SwordsNSandals {
     while (true) {
       narrator.print("What is next on the agenda? (Battle/Shop/Inventory)");
       String entry = Input.validEntry(homeOptions);
-      if (entry.equals("shop")) {
+      if (entry.equals("shop")) { // SHOP
         narrator.print("Welcome to the Shop!");
         while (true) {
           narrator.print("Would you like a weapon or armor? (Weapon/Armor/Back)");
@@ -102,8 +104,36 @@ public class SwordsNSandals {
             break;
           }
         }
-      } else if (entry.equals("inventory")) {
-        storage.viewStorage();
+      } else if (entry.equals("inventory")) { // INVENTORY
+        while (true) {
+          narrator.print("What would you like to do? (View/Equip/Back)");
+          entry = Input.validEntry(inventoryOptions);
+          if (entry.equals("view")) {
+            narrator.print("Here are your items:");
+            storage.viewStorage();
+          } else if (entry.equals("equip")) {
+            narrator.print(
+                "To equip an item, enter the ID of the item you wish to equip. You can choose to return to the previous menu by typing (0)");
+            while (true) {
+              narrator.print("What would you like to equip?");
+              Input.newIntInput();;
+              int num = Input.getNumInput();
+              if (num == 0) {
+                break;
+              } else {
+                try {
+                  user.equipItemById(num);
+                } catch (UnknownItemException e) {
+                  e.printStackTrace();
+                }
+              }
+            }
+          } else {
+            break;
+          }
+        }
+
+
       } else if (entry.equals("battle")) {
 
       }

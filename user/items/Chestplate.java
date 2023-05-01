@@ -6,7 +6,7 @@ public class Chestplate extends Equipment {
     private String description = "CHESTPLATE";
 
     public Chestplate(int level) {
-        super(EquipmentType.ARMOR, "Chestplate", Rarity.COMMON, level);
+        super(EquipmentType.ARMOR, EquipmentName.CHESTPLATE, Rarity.COMMON, level);
         this.armor = calculateArmor();
     }
 

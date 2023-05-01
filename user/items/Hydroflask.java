@@ -10,7 +10,7 @@ public class Hydroflask extends Equipment {
     private String description = "HYDROFLASK";
 
     public Hydroflask(int level) {
-        super(EquipmentType.WEAPON, "Hydroflask", Rarity.RARE, level);
+        super(EquipmentType.WEAPON, EquipmentName.HYDROFLASK, Rarity.RARE, level);
         this.minDamage = calculateMinDamage();
         this.maxDamage = calculateMaxDamage();
     }

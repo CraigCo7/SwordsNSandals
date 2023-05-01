@@ -10,7 +10,7 @@ public class Sword extends Equipment {
     private String description = "SWORD";
 
     public Sword(int level) {
-        super(EquipmentType.WEAPON, "Sword", Rarity.COMMON, level);
+        super(EquipmentType.WEAPON, EquipmentName.SWORD, Rarity.COMMON, level);
         this.minDamage = calculateMinDamage();
         this.maxDamage = calculateMaxDamage();
     }

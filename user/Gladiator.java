@@ -2,6 +2,8 @@ package user;
 
 import java.util.Random;
 import user.items.Equipment;
+import user.items.EquipmentName;
+import utils.exceptions.UnknownItemException;
 
 public class Gladiator {
     private int attack;
@@ -24,39 +26,19 @@ public class Gladiator {
             this.player = player;
         }
 
-        public void equipHelmet(Equipment helmet) {
-            if (!this.player) {
-                this.helmet = helmet;
-            }
-        }
-
-        public void equipChestplate(Equipment chestplate) {
-            if (!this.player) {
-                this.chestplate = chestplate;
-            }
-        }
-
-        public void equipBracers(Equipment bracers) {
-            if (!this.player) {
-                this.bracers = bracers;
-            }
-        }
-
-        public void equipGreaves(Equipment greaves) {
-            if (!this.player) {
-                this.greaves = greaves;
-            }
-        }
-
-        public void equipWeapon(Equipment weapon) {
-            if (!this.player) {
-                this.weapon = weapon;
-            }
-        }
-
-        public void equipShield(Equipment shield) {
-            if (!this.player) {
-                this.shield = shield;
+        public void equipItem(Equipment equipment) {
+            if (equipment.getName().equals(EquipmentName.HELMET)) {
+                this.helmet = equipment;
+            } else if (equipment.getName().equals(EquipmentName.CHESTPLATE)) {
+                this.chestplate = equipment;
+            } else if (equipment.getName().equals(EquipmentName.BRACERS)) {
+                this.bracers = equipment;
+            } else if (equipment.getName().equals(EquipmentName.GREAVES)) {
+                this.greaves = equipment;
+            } else if (equipment.getName().equals(EquipmentName.SHIELD)) {
+                this.shield = equipment;
+            } else {
+                this.weapon = equipment;
             }
         }
 
@@ -146,6 +128,10 @@ public class Gladiator {
 
     public int getStamina() {
         return this.stamina;
+    }
+
+    public Equipped getEquipped() {
+        return this.equipped;
     }
 
     public String getStats() {

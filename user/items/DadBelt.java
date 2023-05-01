@@ -10,7 +10,7 @@ public class DadBelt extends Equipment {
     private String description = "DADBELT";
 
     public DadBelt(int level) {
-        super(EquipmentType.WEAPON, "DadBelt", Rarity.RARE, level);
+        super(EquipmentType.WEAPON, EquipmentName.DADBELT, Rarity.RARE, level);
         this.minDamage = calculateMinDamage();
         this.maxDamage = calculateMaxDamage();
     }

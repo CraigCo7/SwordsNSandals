@@ -6,7 +6,7 @@ public class Helmet extends Equipment {
     private String description = "HELMET";
 
     public Helmet(int level) {
-        super(EquipmentType.ARMOR, "Helmet", Rarity.COMMON, level);
+        super(EquipmentType.ARMOR, EquipmentName.HELMET, Rarity.COMMON, level);
         this.armor = calculateArmor();
     }
 

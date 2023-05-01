@@ -10,9 +10,9 @@ public class Equipment {
     private EquipmentType type;
     private Rarity rarity;
     private int level;
-    private String name;
+    private EquipmentName name;
 
-    protected Equipment(EquipmentType type, String name, Rarity rarity, int level) {
+    protected Equipment(EquipmentType type, EquipmentName name, Rarity rarity, int level) {
         this.id = counter;
         this.type = type;
         this.rarity = rarity;
@@ -37,7 +37,7 @@ public class Equipment {
         return this.id;
     }
 
-    public String getName() {
+    public EquipmentName getName() {
         return this.name;
     }
 
