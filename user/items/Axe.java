@@ -10,7 +10,7 @@ public class Axe extends Equipment {
     private String description = "AXE";
 
     public Axe(int level) {
-        super(EquipmentType.WEAPON, Rarity.COMMON, level);
+        super(EquipmentType.WEAPON, "Axe", Rarity.COMMON, level);
         this.minDamage = calculateMinDamage();
         this.maxDamage = calculateMaxDamage();
     }

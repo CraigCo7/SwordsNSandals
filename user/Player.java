@@ -18,8 +18,8 @@ public class Player extends Gladiator {
 
     private Player(String name, Gladiator.Builder builder) {
         super(builder);
-        this.name = name;
         Player.storage = Storage.createStorage();
+        this.name = name;
         this.level = 1;
         this.experience = 0;
     }
@@ -35,13 +35,13 @@ public class Player extends Gladiator {
         return Player.player;
     }
 
-    private static class Storage {
+    public static class Storage {
         private List<Equipment> items;
 
         private static Storage storage;
 
         private Storage() {
-            this.items = new ArrayList<Equipment>();
+            this.items = new ArrayList<Equipment>(91);
         }
 
         public static Storage createStorage() {
@@ -50,7 +50,7 @@ public class Player extends Gladiator {
             } else {
                 System.out.println("Storage already created");
             }
-            return Player.storage;
+            return Storage.storage;
         }
 
         public void removeItem(Equipment equipment) {
@@ -65,8 +65,14 @@ public class Player extends Gladiator {
             if (items.contains(equipment)) {
                 System.out.println("Cannot have 2 of the same item.");
             } else {
-                System.out.println("Do not have item.");
+                items.add(equipment);
             }
+        }
+
+        public void viewStorage() {
+            this.items.forEach((item) -> {
+                System.out.println(item.toString());
+            });
         }
 
     }
@@ -140,6 +146,10 @@ public class Player extends Gladiator {
 
     public Equipped getEquipped() {
         return this.equipped;
+    }
+
+    public static Storage getStorage() {
+        return Player.storage;
     }
 
 }

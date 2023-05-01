@@ -10,7 +10,7 @@ public class Spear extends Equipment {
     private String description = "SPEAR";
 
     public Spear(int level) {
-        super(EquipmentType.WEAPON, Rarity.COMMON, level);
+        super(EquipmentType.WEAPON, "Spear", Rarity.COMMON, level);
         this.minDamage = calculateMinDamage();
         this.maxDamage = calculateMaxDamage();
     }

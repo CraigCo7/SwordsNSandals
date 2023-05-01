@@ -6,7 +6,7 @@ public class Greaves extends Equipment {
     private String description = "GREAVES";
 
     public Greaves(int level) {
-        super(EquipmentType.ARMOR, Rarity.COMMON, level);
+        super(EquipmentType.ARMOR, "Greaves", Rarity.COMMON, level);
         this.armor = calculateArmor();
     }
 

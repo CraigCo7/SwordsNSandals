@@ -10,7 +10,7 @@ public class MomSlipper extends Equipment {
     private String description = "MOMSLIPPER";
 
     public MomSlipper(int level) {
-        super(EquipmentType.WEAPON, Rarity.RARE, level);
+        super(EquipmentType.WEAPON, "MomSlipper", Rarity.RARE, level);
         this.minDamage = calculateMinDamage();
         this.maxDamage = calculateMaxDamage();
     }

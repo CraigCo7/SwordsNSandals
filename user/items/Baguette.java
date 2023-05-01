@@ -10,7 +10,7 @@ public class Baguette extends Equipment {
     private String description = "BAGUETTE";
 
     public Baguette(int level) {
-        super(EquipmentType.WEAPON, Rarity.RARE, level);
+        super(EquipmentType.WEAPON, "Baguette", Rarity.RARE, level);
         this.minDamage = calculateMinDamage();
         this.maxDamage = calculateMaxDamage();
     }

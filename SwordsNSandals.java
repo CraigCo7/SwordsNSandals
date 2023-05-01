@@ -5,11 +5,13 @@ import java.util.Scanner;
 import user.Gladiator;
 import user.Gladiator.Builder;
 import user.Gladiator.Equipped;
+import user.Player.Storage;
 import user.Player;
 import user.items.Equipment;
 import user.items.Sword;
 import utils.DelayedStringPrinter;
 import utils.Input;
+import utils.exceptions.NotEnoughExperienceException;
 import utils.exceptions.UnknownWeaponException;
 
 public class SwordsNSandals {
@@ -61,17 +63,50 @@ public class SwordsNSandals {
     // Assign first weapon
 
     narrator.print("Here is your first weapon.");
-    Equipment weapon = new Sword(1);
-    System.out.println(weapon.getId());
-    Equipped equipment = user.getEquipped();
-    equipment.equipWeapon(weapon);
+    Storage storage = Player.getStorage();
+    Equipment equipment = new Sword(1);
+    storage.addItem(equipment);
+    Equipped equipped = user.getEquipped();
+    equipped.equipWeapon(equipment);
 
     // Freeplay
     List<String> homeOptions = new ArrayList<String>(Arrays.asList("battle", "shop", "inventory"));
+    List<String> shopOptions = new ArrayList<String>(Arrays.asList("weapon", "armor", "back"));
 
     narrator.print("This is where I leave you...");
 
-    narrator.print("What is next on the agenda? (Battle/Shop/Inventory)");
-    Input.validEntry(homeOptions);
+
+    while (true) {
+      narrator.print("What is next on the agenda? (Battle/Shop/Inventory)");
+      String entry = Input.validEntry(homeOptions);
+      if (entry.equals("shop")) {
+        narrator.print("Welcome to the Shop!");
+        while (true) {
+          narrator.print("Would you like a weapon or armor? (Weapon/Armor/Back)");
+          entry = Input.validEntry(shopOptions);
+          if (entry.equals("weapon")) {
+            try {
+              equipment = Equipment.buyWeapon(user);
+              storage.addItem(equipment);
+            } catch (NotEnoughExperienceException e) {
+              e.printStackTrace();
+            }
+          } else if (entry.equals("armor")) {
+            try {
+              equipment = Equipment.buyArmor(user);
+              storage.addItem(equipment);
+            } catch (NotEnoughExperienceException e) {
+              e.printStackTrace();
+            }
+          } else {
+            break;
+          }
+        }
+      } else if (entry.equals("inventory")) {
+        storage.viewStorage();
+      } else if (entry.equals("battle")) {
+
+      }
+    }
   }
 }
