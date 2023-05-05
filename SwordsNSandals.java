@@ -8,7 +8,8 @@ import user.Gladiator.Equipped;
 import user.Player.Storage;
 import user.Player;
 import user.items.Equipment;
-import user.items.Sword;
+import user.items.EquipmentName;
+import user.items.Weapon;
 import utils.DelayedStringPrinter;
 import utils.Input;
 import utils.exceptions.NotEnoughExperienceException;
@@ -65,7 +66,7 @@ public class SwordsNSandals {
 
     narrator.print("Here is your first weapon.");
     Storage storage = Player.getStorage();
-    Equipment equipment = new Sword(1);
+    Equipment equipment = new Weapon(EquipmentName.SWORD, 1);
     storage.addItem(equipment);
     Equipped equipped = user.getEquipped();
     equipped.equipItem(equipment);
@@ -132,7 +133,6 @@ public class SwordsNSandals {
             break;
           }
         }
-
 
       } else if (entry.equals("battle")) {
 

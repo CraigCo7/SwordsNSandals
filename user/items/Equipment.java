@@ -6,16 +6,15 @@ import utils.exceptions.NotEnoughExperienceException;
 
 public class Equipment {
     private static int counter = 1;
-    private int id;
-    private EquipmentType type;
-    private Rarity rarity;
-    private int level;
-    private EquipmentName name;
+    protected int id;
+    protected EquipmentType type;
+    protected Rarity rarity;
+    protected int level;
+    protected EquipmentName name;
 
-    protected Equipment(EquipmentType type, EquipmentName name, Rarity rarity, int level) {
+    protected Equipment(EquipmentType type, EquipmentName name, int level) {
         this.id = counter;
         this.type = type;
-        this.rarity = rarity;
         this.level = level;
         this.name = name;
         counter++;
@@ -60,25 +59,25 @@ public class Equipment {
             if (rarity < 7) {
                 int weaponType = random.nextInt(3);
                 if (weaponType == 0) {
-                    return new Sword(level);
+                    return new Weapon(EquipmentName.SWORD, level);
                 } else if (weaponType == 1) {
-                    return new Axe(level);
+                    return new Weapon(EquipmentName.AXE, level);
                 } else {
-                    return new Spear(level);
+                    return new Weapon(EquipmentName.SPEAR, level);
                 }
             } else if (rarity < 9) { // Rare Weapon
                 int weaponType = random.nextInt(4);
                 if (weaponType == 0) {
-                    return new Baguette(level);
+                    return new Weapon(EquipmentName.BAGUETTE, level);
                 } else if (weaponType == 1) {
-                    return new Hydroflask(level);
+                    return new Weapon(EquipmentName.HYDROFLASK, level);
                 } else if (weaponType == 2) {
-                    return new DadBelt(level);
+                    return new Weapon(EquipmentName.DADBELT, level);
                 } else {
-                    return new MomSlipper(level);
+                    return new Weapon(EquipmentName.MOMSLIPPER, level);
                 }
             } else { // Legendary Weapon
-                return new Rizz(level);
+                return new Weapon(EquipmentName.RIZZ, level);
             }
         }
     }
@@ -93,15 +92,15 @@ public class Equipment {
             int level = random.nextInt(7) + 1;
 
             if (armorType == 0) {
-                return new Helmet(level);
+                return new Armor(EquipmentName.HELMET, level);
             } else if (armorType == 1) {
-                return new Chestplate(level);
+                return new Armor(EquipmentName.CHESTPLATE, level);
             } else if (armorType == 2) {
-                return new Bracers(level);
+                return new Armor(EquipmentName.BRACERS, level);
             } else if (armorType == 3) {
-                return new Greaves(level);
+                return new Armor(EquipmentName.GREAVES, level);
             } else {
-                return new Shield(level);
+                return new Armor(EquipmentName.SHIELD, level);
             }
         }
     }
