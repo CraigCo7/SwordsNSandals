@@ -1,4 +1,4 @@
-package user.items;
+package entities.items;
 
 public enum EquipmentName {
     SWORD, AXE, SPEAR, BAGUETTE, HYDROFLASK, DADBELT, MOMSLIPPER, RIZZ, HELMET, CHESTPLATE, BRACERS, GREAVES, SHIELD;

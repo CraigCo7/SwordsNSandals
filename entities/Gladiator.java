@@ -1,8 +1,8 @@
-package user;
+package entities;
 
 import java.util.Random;
-import user.items.Equipment;
-import user.items.EquipmentName;
+import entities.items.Equipment;
+import entities.items.EquipmentName;
 import utils.exceptions.UnknownItemException;
 
 public class Gladiator {

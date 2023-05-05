@@ -1,4 +1,4 @@
-package user.items;
+package entities.items;
 
 public class Weapon extends Equipment {
     private int baseDamage;

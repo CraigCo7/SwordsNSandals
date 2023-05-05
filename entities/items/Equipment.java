@@ -1,7 +1,7 @@
-package user.items;
+package entities.items;
 
 import java.util.Random;
-import user.Player;
+import entities.Player;
 import utils.exceptions.NotEnoughExperienceException;
 
 public class Equipment {

@@ -2,14 +2,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import user.Gladiator;
-import user.Gladiator.Builder;
-import user.Gladiator.Equipped;
-import user.Player.Storage;
-import user.Player;
-import user.items.Equipment;
-import user.items.EquipmentName;
-import user.items.Weapon;
+import entities.Gladiator;
+import entities.Player;
+import entities.Gladiator.Builder;
+import entities.Gladiator.Equipped;
+import entities.Player.Storage;
+import entities.items.Equipment;
+import entities.items.EquipmentName;
+import entities.items.Weapon;
 import utils.DelayedStringPrinter;
 import utils.Input;
 import utils.exceptions.NotEnoughExperienceException;
@@ -44,7 +44,7 @@ public class SwordsNSandals {
 
     // Stats
 
-    user.Player user = Player.newPlayer(name);
+    entities.Player user = Player.newPlayer(name);
     narrator.print("You currently have:\n" + user.getStats());
     List<Integer> addStats = user.promptAddStats(50);
 

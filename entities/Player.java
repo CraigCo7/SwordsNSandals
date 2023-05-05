@@ -1,10 +1,10 @@
-package user;
+package entities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import user.items.Equipment;
+import entities.items.Equipment;
 import utils.DelayedStringPrinter;
 import utils.Input;
 import utils.exceptions.UnknownItemException;
