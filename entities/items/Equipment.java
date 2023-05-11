@@ -32,11 +32,6 @@ public class Equipment {
         return this.armorType;
     }
 
-    @Override
-    public String toString() {
-        return "STUFF";
-    }
-
     public static Equipment buyArmor(Player player) throws NotEnoughExperienceException {
         // Cost Experience.
         if (player.getExperience() < 200) {

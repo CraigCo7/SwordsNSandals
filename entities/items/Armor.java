@@ -54,7 +54,8 @@ public class Armor extends Equipment {
 
     @Override
     public String toString() {
-        return this.armorType.toString() + " - Level" + this.level;
+        return "ID: " + this.id + "\tARMORSLOT: " + this.armorType + "\tLEVEL: " + this.level
+                + "\tARMOR: " + this.armor;
     }
 }
 
