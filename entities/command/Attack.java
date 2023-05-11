@@ -1,7 +1,6 @@
 package entities.command;
 
 import entities.Gladiator;
-import entities.Player;
 
 public class Attack implements Command {
 
