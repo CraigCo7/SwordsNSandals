@@ -27,7 +27,16 @@ public class SwordsNSandals {
     DelayedStringPrinter narrator = new DelayedStringPrinter(15);
 
     // Story Begins
-    narrator.print("BackStory Here");
+    narrator.print(
+        "You were once a humble farmer, tending to your fields and living a peaceful life in your small town. But one fateful day, your peaceful existence was shattered when your town was ambushed by a band of ruthless raiders.");
+    narrator.print(
+        "In the chaos of the attack, you were captured and thrown into a dark and ominous dungeon, where you were told that the only way to earn your freedom was to fight as a gladiator in the arena.");
+    narrator.print(
+        "With no other choice, you stepped into the arena, facing off against other prisoners, wild beasts, and skilled fighters. You quickly learned that the only way to survive was to fight with all your strength and cunning, using every weapon and skill at your disposal.");
+    narrator.print(
+        "But your ultimate goal was not just to survive, it was to become the champion of the arena and earn your freedom. To do so, you would have to face the most formidable foes and the deadliest challenges, all while battling the inner demons that threatened to consume you.");
+    narrator.print(
+        "Do you have what it takes to fight your way to victory and earn your freedom? Only time will tell as you enter the arena and begin your quest to become the champion.");
 
     // 1. Character creation
     // Name
@@ -85,7 +94,8 @@ public class SwordsNSandals {
 
 
 
-    narrator.print("This is where I leave you...");
+    narrator.print(
+        "This is where I leave you... Fight your way until you accumulate 1000XP and LVL 7. Only then will you be set free!");
 
 
     while (true) {
