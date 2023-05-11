@@ -2,7 +2,6 @@ package entities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import entities.items.Equipment;
 import utils.DelayedStringPrinter;
@@ -12,10 +11,7 @@ import utils.exceptions.UnknownItemException;
 public class Player extends Gladiator {
     private static Player player;
     private static Storage storage;
-    private String name;
     private int experience;
-    private int level;
-
 
     private Player(String name, Gladiator.Builder builder) {
         super(builder);
@@ -27,7 +23,7 @@ public class Player extends Gladiator {
 
     // Used to create a new Player
     public static Player newPlayer(String name) {
-        Gladiator.Builder builder = new Builder(10, 10, 10, 10);
+        Gladiator.Builder builder = new Builder(10, 10, 100, 50);
         if (Player.player == null) {
             Player.player = new Player(name, builder);
         } else {
@@ -123,30 +119,32 @@ public class Player extends Gladiator {
     public void addStats(List<Integer> stats) {
         this.addAttack(stats.get(0));
         this.addDefense(stats.get(1));
-        this.addHealth(stats.get(2));
-        this.addStamina(stats.get(3));
+        this.addMaxHealth(stats.get(2));
+        this.addMaxStamina(stats.get(3));
     }
 
-    public String getName() {
-        return this.name;
+    public void addExperience(int experience) {
+        this.experience += experience;
+    }
+
+    public void levelUp() {
+        if (this.level == 7) {
+            System.out.println("Already at max level!");
+            System.out.println("Reach 1000XP to earn your freedom.");
+            return;
+        }
+        this.level += 1;
+        this.experience -= 500;
     }
 
     public int getExperience() {
         return this.experience;
     }
 
-    public int getLevel() {
-        return this.level;
-    }
-
     public String viewProjectedStats(int attack, int defense, int health, int stamina) {
         return "Attack: " + (this.getAttack() + attack) + "\nDefense: "
-                + (this.getDefense() + defense) + "\nHealth: " + (this.getHealth() + health)
-                + "\nStamina: " + (this.getStamina() + stamina);
-    }
-
-    public Equipped getEquipped() {
-        return this.equipped;
+                + (this.getDefense() + defense) + "\nHealth: " + (this.getMaxHealth() + health)
+                + "\nStamina: " + (this.getMaxStamina() + stamina);
     }
 
     public static Storage getStorage() {
@@ -160,7 +158,6 @@ public class Player extends Gladiator {
         storage.items.forEach((item) -> {
             if (item.getId() == id) {
                 equipped.equipItem(item);
-                System.out.println(item.toString() + " has been equipped!");
             }
             itemIds.add(item.getId());
         });

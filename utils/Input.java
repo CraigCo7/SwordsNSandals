@@ -60,7 +60,11 @@ public class Input {
       if (entries.contains(Input.stringInput)) {
         return Input.stringInput;
       } else {
-        System.out.println("Please enter a valid input!" + "(" + entries + ")");
+        System.out.print("Please enter a valid input! (");
+        entries.forEach((element) -> {
+          System.out.print(element.toString() + "/");
+        });
+        System.out.print(")");
       }
     }
   }

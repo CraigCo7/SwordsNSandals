@@ -4,14 +4,16 @@ import entities.Gladiator;
 
 public class Rest implements Command {
 
-    private Gladiator gladiator;
+    private Gladiator player;
+    private Gladiator opponent;
 
-    public Rest(Gladiator gladiator) {
-        this.gladiator = gladiator;
+    public Rest(Gladiator player, Gladiator opponent) {
+        this.player = player;
+        this.opponent = opponent;
     }
 
     public void execute() {
-        gladiator.rest();
+        player.rest(opponent);
     }
 
 }

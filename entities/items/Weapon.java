@@ -1,151 +1,78 @@
 package entities.items;
 
-public class Weapon extends Equipment {
-    private int baseDamage;
-    private int minDamage;
-    private int maxDamage;
-    private int weight;
-    private double lvlUpMin;
-    private double lvlUpMax;
-    private String description;
+import java.util.Random;
+import entities.Player;
+import utils.exceptions.NotEnoughExperienceException;
 
-    public Weapon(EquipmentName equipmentName, int level) {
-        super(EquipmentType.WEAPON, equipmentName, level);
-        this.rarity = instantiateRarity(equipmentName);
-        this.weight = instantiateWeight(equipmentName);
-        this.baseDamage = instantiateBaseDamage(equipmentName);
-        this.lvlUpMin = instantiateLvlMin(equipmentName);
-        this.lvlUpMax = instantiateLvlMax(equipmentName);
-        this.minDamage = instantiateMinDamage();
-        this.maxDamage = instantiateMaxDamage();
-        this.description = instantiateDescription(equipmentName);
+public abstract class Weapon extends Equipment {
 
-    }
+    protected int minDamage;
+    protected int maxDamage;
+    protected int weight;
 
-    private Rarity instantiateRarity(EquipmentName equipmentName) {
-        if (equipmentName == EquipmentName.RIZZ) {
-            return Rarity.LEGENDARY;
-        } else if (equipmentName == EquipmentName.BAGUETTE
-                || equipmentName == EquipmentName.HYDROFLASK
-                || equipmentName == EquipmentName.DADBELT
-                || equipmentName == EquipmentName.MOMSLIPPER) {
-            return Rarity.RARE;
+    public abstract int instantiateMinDamage();
+
+    public abstract int instantiateMaxDamage();
+
+    public static Equipment buyWeapon(Player player) throws NotEnoughExperienceException {
+        // Cost Experience.
+        if (player.getExperience() < 200) {
+            throw new NotEnoughExperienceException();
         } else {
-            return Rarity.COMMON;
+            Random random = new Random();
+            int rarity = random.nextInt(10);
+            int level = random.nextInt(7) + 1;
+
+            // Common Weapon
+            if (rarity < 7) {
+                int weaponType = random.nextInt(3);
+                if (weaponType == 0) {
+                    player.addExperience(-200);
+                    return new Sword(level);
+                } else if (weaponType == 1) {
+                    player.addExperience(-200);
+                    return new Axe(level);
+                } else {
+                    player.addExperience(-200);
+                    return new Spear(level);
+                }
+            } else if (rarity < 9) { // Rare Weapon
+                int weaponType = random.nextInt(4);
+                if (weaponType == 0) {
+                    player.addExperience(-200);
+                    return new Baguette(level);
+                } else if (weaponType == 1) {
+                    player.addExperience(-200);
+                    return new Hydroflask(level);
+                } else if (weaponType == 2) {
+                    player.addExperience(-200);
+                    return new DadBelt(level);
+                } else {
+                    player.addExperience(-200);
+                    return new MomSlipper(level);
+                }
+            } else { // Legendary Weapon
+                player.addExperience(-200);
+                return new Rizz(level);
+            }
         }
+
     }
 
-    private int instantiateWeight(EquipmentName equipmentName) {
-        if (equipmentName == EquipmentName.SWORD) {
-            return 8;
-        } else if (equipmentName == EquipmentName.AXE) {
-            return 20;
-        } else if (equipmentName == EquipmentName.SPEAR) {
-            return 15;
-        } else if (equipmentName == EquipmentName.BAGUETTE) {
-            return 3;
-        } else if (equipmentName == EquipmentName.HYDROFLASK) {
-            return 30;
-        } else if (equipmentName == EquipmentName.DADBELT) {
-            return 5;
-        } else if (equipmentName == EquipmentName.MOMSLIPPER) {
-            return 3;
-        } else {
-            return 0;
-        }
+    public int getWeight() {
+        return this.weight;
     }
 
-    private int instantiateBaseDamage(EquipmentName equipmentName) {
-        if (equipmentName == EquipmentName.SWORD) {
-            return 10;
-        } else if (equipmentName == EquipmentName.AXE) {
-            return 18;
-        } else if (equipmentName == EquipmentName.SPEAR) {
-            return 12;
-        } else if (equipmentName == EquipmentName.BAGUETTE) {
-            return 8;
-        } else if (equipmentName == EquipmentName.HYDROFLASK) {
-            return 25;
-        } else if (equipmentName == EquipmentName.DADBELT) {
-            return 18;
-        } else if (equipmentName == EquipmentName.MOMSLIPPER) {
-            return 12;
-        } else {
-            return 35;
-        }
+    public int getMinDamage() {
+        return this.minDamage;
     }
 
-    private double instantiateLvlMin(EquipmentName equipmentName) {
-        if (equipmentName == EquipmentName.SWORD) {
-            return 1.3;
-        } else if (equipmentName == EquipmentName.AXE) {
-            return 1.2;
-        } else if (equipmentName == EquipmentName.SPEAR) {
-            return 1.4;
-        } else if (equipmentName == EquipmentName.BAGUETTE) {
-            return 1.3;
-        } else if (equipmentName == EquipmentName.HYDROFLASK) {
-            return 1.2;
-        } else if (equipmentName == EquipmentName.DADBELT) {
-            return 1.1;
-        } else if (equipmentName == EquipmentName.MOMSLIPPER) {
-            return 1.1;
-        } else {
-            return 0;
-        }
-    }
-
-    private double instantiateLvlMax(EquipmentName equipmentName) {
-        if (equipmentName == EquipmentName.SWORD) {
-            return 1.6;
-        } else if (equipmentName == EquipmentName.AXE) {
-            return 1.5;
-        } else if (equipmentName == EquipmentName.SPEAR) {
-            return 1.7;
-        } else if (equipmentName == EquipmentName.BAGUETTE) {
-            return 1.5;
-        } else if (equipmentName == EquipmentName.HYDROFLASK) {
-            return 1.5;
-        } else if (equipmentName == EquipmentName.DADBELT) {
-            return 1.2;
-        } else if (equipmentName == EquipmentName.MOMSLIPPER) {
-            return 1.2;
-        } else {
-            return 2.0;
-        }
-    }
-
-    private String instantiateDescription(EquipmentName equipmentName) {
-        if (equipmentName == EquipmentName.SWORD) {
-            return "SWORD";
-        } else if (equipmentName == EquipmentName.AXE) {
-            return "AXE";
-        } else if (equipmentName == EquipmentName.SPEAR) {
-            return "SPEAR";
-        } else if (equipmentName == EquipmentName.BAGUETTE) {
-            return "BAGUETTE";
-        } else if (equipmentName == EquipmentName.HYDROFLASK) {
-            return "HYDROFLASK";
-        } else if (equipmentName == EquipmentName.DADBELT) {
-            return "DADBELT";
-        } else if (equipmentName == EquipmentName.MOMSLIPPER) {
-            return "MOMSLIPPER";
-        } else {
-            return "RIZZ";
-        }
-    }
-
-    private int instantiateMinDamage() {
-        return (int) Math.floor(baseDamage * this.getLevel() * lvlUpMin);
-    }
-
-    private int instantiateMaxDamage() {
-        return (int) Math.floor(baseDamage * this.getLevel() * lvlUpMax);
+    public int getMaxDamage() {
+        return this.maxDamage;
     }
 
     public String getDescription() {
         return this.description;
     }
-
 
 }

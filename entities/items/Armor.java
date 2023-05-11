@@ -3,23 +3,23 @@ package entities.items;
 public class Armor extends Equipment {
     private int baseArmor;
     private int armor;
-    private String description;
 
-    public Armor(EquipmentName equipmentName, int level) {
-        super(EquipmentType.ARMOR, equipmentName, level);
-        this.baseArmor = instantiateBaseArmor(equipmentName);
+    public Armor(ArmorType armorType, int level) {
+        this.armorType = armorType;
+        this.id = increaseCounter();
+        this.baseArmor = instantiateBaseArmor(armorType);
         this.armor = instantiateArmor();
-        this.description = instantiateDescription(equipmentName);
+        this.description = instantiateDescription(armorType);
     }
 
-    private int instantiateBaseArmor(EquipmentName equipmentName) {
-        if (equipmentName == EquipmentName.HELMET) {
+    private int instantiateBaseArmor(ArmorType armorType) {
+        if (armorType == ArmorType.HELMET) {
             return 4;
-        } else if (equipmentName == EquipmentName.CHESTPLATE) {
+        } else if (armorType == ArmorType.CHESTPLATE) {
             return 16;
-        } else if (equipmentName == EquipmentName.BRACERS) {
+        } else if (armorType == ArmorType.BRACERS) {
             return 4;
-        } else if (equipmentName == EquipmentName.GREAVES) {
+        } else if (armorType == ArmorType.GREAVES) {
             return 6;
         } else {
             return 10;
@@ -30,14 +30,14 @@ public class Armor extends Equipment {
         return baseArmor * this.getLevel();
     }
 
-    private String instantiateDescription(EquipmentName equipmentName) {
-        if (equipmentName == EquipmentName.HELMET) {
+    private String instantiateDescription(ArmorType armorType) {
+        if (armorType == ArmorType.HELMET) {
             return "HELMET";
-        } else if (equipmentName == EquipmentName.CHESTPLATE) {
+        } else if (armorType == ArmorType.CHESTPLATE) {
             return "CHESTPLATE";
-        } else if (equipmentName == EquipmentName.BRACERS) {
+        } else if (armorType == ArmorType.BRACERS) {
             return "BRACERS";
-        } else if (equipmentName == EquipmentName.GREAVES) {
+        } else if (armorType == ArmorType.GREAVES) {
             return "GREAVES";
         } else {
             return "SHIELD";
@@ -50,6 +50,11 @@ public class Armor extends Equipment {
 
     public String getDescription() {
         return this.description;
+    }
+
+    @Override
+    public String toString() {
+        return this.armorType.toString() + " - Level" + this.level;
     }
 }
 

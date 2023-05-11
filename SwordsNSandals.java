@@ -1,14 +1,17 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Random;
 import entities.Gladiator;
 import entities.Player;
-import entities.Gladiator.Builder;
 import entities.Gladiator.Equipped;
 import entities.Player.Storage;
+import entities.command.Attack;
+import entities.command.Defend;
+import entities.command.Invoker;
+import entities.command.Rest;
 import entities.items.Equipment;
-import entities.items.EquipmentName;
+import entities.items.Sword;
 import entities.items.Weapon;
 import utils.DelayedStringPrinter;
 import utils.Input;
@@ -19,9 +22,9 @@ import utils.exceptions.UnknownWeaponException;
 public class SwordsNSandals {
 
   public static void main(String[] args) throws InterruptedException, UnknownWeaponException {
+
     // Instances of Needed Classes
     DelayedStringPrinter narrator = new DelayedStringPrinter(15);
-    Scanner myObj = Input.getScanner();
 
     // Story Begins
     narrator.print("BackStory Here");
@@ -66,20 +69,28 @@ public class SwordsNSandals {
 
     narrator.print("Here is your first weapon.");
     Storage storage = Player.getStorage();
-    Equipment equipment = new Weapon(EquipmentName.SWORD, 1);
+    Equipment equipment = new Sword(1);
     storage.addItem(equipment);
     Equipped equipped = user.getEquipped();
     equipped.equipItem(equipment);
 
+
     // Freeplay
+    List<String> gladiatorNames = new ArrayList<String>(Arrays.asList("Zzyzx", "Nimrod", "Octavius",
+        "Cletus", "Xantha", "Ptolemy", "Mordecai", "Persephone", "Grendel", "Soren"));
     List<String> homeOptions = new ArrayList<String>(Arrays.asList("battle", "shop", "inventory"));
     List<String> shopOptions = new ArrayList<String>(Arrays.asList("weapon", "armor", "back"));
     List<String> inventoryOptions = new ArrayList<String>(Arrays.asList("view", "equip", "back"));
+    List<String> battleOptions = new ArrayList<String>(Arrays.asList("attack", "defend", "rest"));
+
+
 
     narrator.print("This is where I leave you...");
 
 
     while (true) {
+      narrator.print("Your current level is: " + user.getLevel() + ". You have "
+          + user.getExperience() + " experience.");
       narrator.print("What is next on the agenda? (Battle/Shop/Inventory)");
       String entry = Input.validEntry(homeOptions);
       if (entry.equals("shop")) { // SHOP
@@ -89,7 +100,7 @@ public class SwordsNSandals {
           entry = Input.validEntry(shopOptions);
           if (entry.equals("weapon")) {
             try {
-              equipment = Equipment.buyWeapon(user);
+              equipment = Weapon.buyWeapon(user);
               storage.addItem(equipment);
             } catch (NotEnoughExperienceException e) {
               e.printStackTrace();
@@ -117,7 +128,12 @@ public class SwordsNSandals {
                 "To equip an item, enter the ID of the item you wish to equip. You can choose to return to the previous menu by typing (0)");
             while (true) {
               narrator.print("What would you like to equip?");
-              Input.newIntInput();;
+              try {
+                Input.newIntInput();;
+
+              } catch (Exception e) {
+                System.out.println("Please enter an integer!");
+              }
               int num = Input.getNumInput();
               if (num == 0) {
                 break;
@@ -135,7 +151,95 @@ public class SwordsNSandals {
         }
 
       } else if (entry.equals("battle")) {
+        Random rand = new Random();
 
+        Gladiator opponent = Gladiator.createGladiator(user.getLevel());
+        System.out.println("USER LEVEL: " + user.getLevel());
+        opponent.setName(gladiatorNames.get(rand.nextInt(10)));
+
+        user.resetHealth();
+        user.resetStamina();
+        user.resetArmor();
+        user.resetDefense();
+        opponent.resetHealth();
+        opponent.resetStamina();
+        opponent.resetArmor();
+        opponent.resetDefense();
+
+        Attack playerAttack = new Attack(user, opponent);
+        Defend playerDefend = new Defend(user, opponent);
+        Rest playerRest = new Rest(user, opponent);
+        Attack opponentAttack = new Attack(opponent, user);
+        Defend opponentDefend = new Defend(opponent, user);
+        Rest opponentRest = new Rest(opponent, user);
+        Invoker invoker = new Invoker();
+
+        while (true) {
+          if (user.getHealth() <= 0) {
+            narrator.print("YOU LOST!");
+            break;
+          }
+          if (opponent.getHealth() <= 0) {
+            narrator.print(opponent.getName() + " bit the dust... Victory!");
+            narrator.print(user.getName() + " received 200XP.");
+            user.addExperience(400 - 30 * user.getLevel());
+            if (user.getExperience() >= 500) {
+              user.levelUp();
+            }
+            break;
+          }
+
+          narrator.print("NAME:\t\t" + user.getName() + "\nARMOR:\t\t" + user.getArmor()
+              + "\nHEALTH:\t\t" + user.getHealth() + "\nSTAMINA:\t" + user.getStamina()
+              + "\nWEAPON:\t" + user.getEquipped().getWeapon());
+          System.out.println(
+              "------------------------------------------------------------------------------------------");
+          narrator.print("OPPONENT LEVEL: " + opponent.getLevel());
+
+          narrator.print("NAME:\t\t" + opponent.getName() + "\nARMOR:\t\t" + opponent.getArmor()
+              + "\nHEALTH:\t\t" + opponent.getHealth() + "\nSTAMINA:\t" + opponent.getStamina()
+              + "\nWEAPON:\t" + opponent.getEquipped().getWeapon());
+
+
+          narrator.print("Enter 3 moves for this turn. (Attack/Defend/Rest)");
+          List<String> moves = new ArrayList<String>(3);
+          String act1 = Input.validEntry(battleOptions);
+          String act2 = Input.validEntry(battleOptions);
+          String act3 = Input.validEntry(battleOptions);
+          moves.add(act1);
+          moves.add(act2);
+          moves.add(act3);
+
+          for (int i = 0; i < 3; i++) {
+
+            // Player moves first
+            if (moves.get(i).equals("attack")) {
+              invoker.addActivity(playerAttack);
+            } else if (moves.get(i).equals("defend")) {
+
+              invoker.addActivity(playerDefend);
+            } else if (moves.get(i).equals("rest")) {
+
+              invoker.addActivity(playerRest);
+            }
+
+            // Computer moves second
+            int computer = rand.nextInt(3);
+            if (computer == 0) {
+              invoker.addActivity(opponentAttack);
+            } else if (computer == 1) {
+              invoker.addActivity(opponentDefend);
+            } else {
+              invoker.addActivity(opponentRest);
+            }
+          }
+          invoker.performActivities();
+          narrator.print("END OF TURN!");
+          user.addStamina();
+          opponent.addStamina();
+          user.resetDefense();
+          opponent.resetDefense();
+        }
       }
     }
   }
